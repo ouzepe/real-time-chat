@@ -1,14 +1,21 @@
-import React from 'react'
+import React from "react";
 
-
-interface InputProps{
-    type: 'text' | 'textarea';
-    value?: string;
+export interface InputProps {
+  type: "text" | "textarea";
+  title?: string;
+  value: string;
+  setValue: (value: string) => void;
 }
-export default function Input() {
+export default function Input({ type, title, value, setValue }: InputProps) {
   return (
-      <input>
-      
-      </input>
-  )
+    <label className='w-100 flex flex-wrap border border-sky-400 rounded p-2'>
+      <span className='w-screen text-gray-400'>{title}</span>
+      <input
+        type={type}
+        className='cursor-pointer focus:outline-none text-gray-600'
+        value={value}
+        onChange={(e) => setValue(e.target.value)}
+      />
+    </label>
+  );
 }
