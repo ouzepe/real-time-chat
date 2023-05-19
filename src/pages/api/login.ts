@@ -4,7 +4,21 @@ type Data = {
   username: string;
 };
 
-export default function login(req: NextApiRequest, res: NextApiResponse<Data>) {
-  console.log(req.body, "ici");
-  res.status(200).json({ username: "Jtest" });
+type ErrorResponse = {
+  error: string;
+};
+
+export default function Login(
+  req: NextApiRequest,
+  res: NextApiResponse<Data | ErrorResponse>
+) {
+  if (req.method === "POST") {
+    const { username } = req.body;
+    
+    
+
+  } else {
+    const errorResponse: ErrorResponse = { error: "Méthode non autorisée" };
+    res.status(405).json(errorResponse);
+  }
 }
