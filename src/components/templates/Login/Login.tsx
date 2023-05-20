@@ -10,11 +10,15 @@ export default function Login() {
   const [err, setErr] = useState(false);
   const submit = () => {
     if (username.trim() !== "") {
-      const body = {
-        username: username,
-      };
-      const result = POST({ url: "login", params: body });
-      console.log("result", result);
+      try {
+        const body = {
+          username: username,
+        };
+        const result = POST({ url: "login", params: body });
+        console.log("result", result);
+      } catch (error: any) {
+          setErr(error)
+      }
     }
   };
 
