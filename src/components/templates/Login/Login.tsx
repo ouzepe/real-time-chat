@@ -4,13 +4,16 @@ import Form from "@/components/molecules/Form/Form";
 import React, { useState } from "react";
 import MessageError from "@/components/atoms/MessageError/MessageError";
 import { POST } from "@/utils";
+import { useRouter } from "next/router";
 
 export default function Login() {
+  const router = useRouter();
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
   const [err, setErr] = useState(false);
   const submit = () => {
+    router.push("/home");
     if (username.trim() !== "") {
       try {
         const body = {
@@ -19,7 +22,7 @@ export default function Login() {
         const result = POST({ url: "login", params: body });
         console.log("result", result);
       } catch (error: any) {
-          setErr(error)
+        setErr(error);
       }
     }
   };
