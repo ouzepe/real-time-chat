@@ -10,15 +10,15 @@ export interface createContextProps{
     setUsername: Dispatch<SetStateAction<string>>;
 }
 
-export const User_data = createContext<createContextProps>({ username: "", setUsername: () => {}});
+export const User = createContext<createContextProps>({ username: "", setUsername: () => {}});
 
 function Context({ children }: ContextProps) {
   const [username, setUsername] = useState("");
 
   return (
-    <User_data.Provider value={{ username, setUsername }}>
+    <User.Provider value={{ username, setUsername }}>
       {children}
-    </User_data.Provider>
+    </User.Provider>
   );
 }
 export default Context;
